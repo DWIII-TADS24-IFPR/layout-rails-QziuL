@@ -1,12 +1,11 @@
-<% content_for :title, "Editing post" %>
+<% content_for :title, "Editar Post" %>
 
-<h1>Editing post</h1>
+<div class="bg-white dark:bg-gray-800 p-10 rounded-xl shadow-xl max-w-2xl mx-auto">
+  <h1 class="text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-8 text-center">Editar Post</h1>
+  <%= render "form", post: @post %>
+</div>
 
-<%= render "form", post: @post %>
-
-<br>
-
-<div>
-  <%= link_to "Show this post", @post %> |
-  <%= link_to "Back to posts", posts_path %>
+<div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+  <%= link_to "Ver Post", @post, class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow transition-colors duration-200 text-center" %>
+  <%= link_to "Voltar", posts_path, class: "bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow transition-colors duration-200 text-center" %>
 </div>

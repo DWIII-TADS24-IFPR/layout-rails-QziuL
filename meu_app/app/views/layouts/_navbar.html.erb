@@ -1,21 +1,61 @@
+
+
+<%# 
 <div>
+    <% if admin_signed_in?
+        <p>Olá, <%= current_admin.email</p>
 
-    <% if admin_signed_in? %>
-        <p>Olá, <%= current_admin.email %></p>
-
-        <%= link_to "Deslogar", destroy_admin_session_path, method: :delete, data: { turbo_method: :delete } %>
-    <% end%>
+        <%= link_to "Deslogar", destroy_admin_session_path, method: :delete, data: { turbo_method: :delete } 
+    <% end
     <ul>
         <li>
-            <%= link_to "Home", root_path %>
+            <%= link_to "Home", root_path
         </li>
 
         <li>
-            <%= link_to "Post", posts_path %>
+            <%= link_to "Post", posts_path
         </li>
 
         <li>
-            <%= link_to "Comment", comments_path %>
+            <%= link_to "Comment", comments_path
         </li>
     </ul>
 </div>
+ %>
+
+<nav class="bg-gray-800 text-white shadow-lg">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+
+      <div class="flex items-center space-x-6">
+        <%= link_to "Meu Blog", root_path, class: "font-bold text-xl hover:text-gray-300 transition-colors" %>
+        
+        <ul class="flex items-baseline space-x-4">
+          <li>
+            <%= link_to "Posts", posts_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors" %>
+          </li>
+          <li>
+            <%= link_to "Comentários", comments_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors" %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <% if admin_signed_in? %>
+          <p class="text-sm text-gray-300">
+            Olá, <span class="font-medium"><%= current_admin.email %></span>
+          </p>
+
+          <%= link_to "Sair", destroy_admin_session_path,
+              method: :delete,
+              data: { turbo_method: :delete },
+              class: "bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" %>
+        <% else %>
+          <%# Você pode adicionar links de Login/Cadastro aqui se precisar %>
+          <%= link_to "Login", new_admin_session_path, class: "px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</nav>

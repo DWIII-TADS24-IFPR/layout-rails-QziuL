@@ -10,9 +10,6 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
@@ -23,15 +20,13 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%# <p class="notice"><%= notice </p>
+    <%# <p class="alert"><%= alert %></p>
 
-    <% if user_signed_in? %>
-      <%= render 'layouts/navbar'  %>
-    <% end%>
-
-    <main class="container mx-auto mt-28 px-5 flex">
+    <%= render 'layouts/navbar'  %>
+    <main class="container mx-auto mt-10 px-5">
       <%= yield %>
     </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

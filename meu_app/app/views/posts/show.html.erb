@@ -1,19 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<%# Aviso %>
+<% if notice %>
+  <div class="mb-4 p-2 rounded bg-green-100 text-green-800 text-sm dark:bg-green-900 dark:text-green-200">
+    <%= notice %>
+  </div>
+<% end %>
 
-<%= render @post %>
+<div class="max-w-4xl mx-auto grid grid-cols-3 gap-6 bg-gray-900 rounded-lg shadow-lg p-6 mb-8">
+  <!-- Post Content (Left Side) -->
+  <div class="col-span-2">
+    <h1 class="text-3xl font-bold text-gray-100 mb-2"><%= @post.title %></h1>
+    <p class="text-gray-300 mb-4"><%= @post.content %></p>
+  </div>
+  <!-- Actions (Right Side) -->
+  <div class="flex flex-col space-y-4 justify-start items-end">
+    <%= link_to "Editar", 
+        edit_post_path(@post), 
+        class: "bg-neutral-700 hover:bg-neutral-800 text-gray-100 font-semibold py-2 px-4 rounded w-full text-right" 
+    %>
+    <div class="bg-neutral-700 hover:bg-neutral-800 text-gray-100 font-semibold py-2 px-4 rounded w-full text-right" >
+      <%= button_to "Deletar", 
+          @post, 
+          method: :delete, 
+          data: { confirm: "Are you sure?" }         
+      %>
+    </div>
+    
+    <%= link_to "Voltar aos posts", 
+        posts_path, 
+        class: "bg-neutral-200 hover:bg-neutral-300 text-gray-800 font-semibold py-2 px-4 rounded w-full text-right" 
+    %>
+    <%#= link_to "Go to comments", comments_path, class: "bg-neutral-700 hover:bg-neutral-800 text-gray-100 font-semibold py-2 px-4 rounded w-full text-right" %>
+  <%#post_path(@post, anchor: "comments")%>
+  </div>
+</div>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-
-
-  <h2>Comments</h2>
-
-  <ul>
-    <% @post.comments.each do |comment |  %>
-      <li><%= comment.content %></li>
+<div id="comments" class="max-w-xl mx-auto bg-gray-800 rounded-lg p-6">
+  <h2 class="text-2xl font-semibold text-gray-100 mb-4">Comentários</h2>
+  <ul class="space-y-2">
+    <% @post.comments.each do |comment| %>
+      <li class="bg-gray-900 p-3 rounded shadow text-gray-300"><%= comment.content %></li>
     <% end %>
   </ul>
-
-  <%= button_to "Destroy this post", @post, method: :delete %>
 </div>

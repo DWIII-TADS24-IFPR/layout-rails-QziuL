@@ -1,16 +1,41 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Comments" %>
 
-<h1>Comments</h1>
+<div class="bg-gray-100 dark:bg-gray-900 rounded-xl mb-10">
+  <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
 
-<div id="comments">
-  <% @comments.each do |comment| %>
-    <%= render comment %>
-    <p>
-      <%= link_to "Show this comment", comment %>
-    </p>
-  <% end %>
+    <p class="text-green-400 dark:text-green-300 mb-4"><%= notice %></p>
+
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 dark:text-white">
+        Meus Comentários
+      </h1>
+      <%= link_to "Novo Comentário", new_comment_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+    </div>
+
+    <% if @comments.any? %>
+      <div id="comments" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% @comments.each do |comment| %>
+          <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+            <%= link_to comment, class: "block p-6" do %>
+              <p class="mt-2 text-gray-600 dark:text-gray-400">
+                 <%= truncate(comment.content, length: 100) %>
+              </p>
+              <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">
+                <b>Post:</b> <%= comment.post.title %>
+              </p>
+              <p class="mt-4 text-sm font-medium text-blue-500">
+                Ver comentário →
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center py-16 px-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">Nenhum comentário encontrado!</h2>
+        <p class="mt-2 text-gray-500 dark:text-gray-400">Que tal criar o seu primeiro agora?</p>
+      </div>
+    <% end %>
+
+  </div>
 </div>
-
-<%= link_to "New comment", new_comment_path %>

@@ -1,11 +1,10 @@
 <% content_for :title, "New comment" %>
 
-<h1>New comment</h1>
+<div class="bg-gray-100 dark:bg-gray-900 rounded-xl p-6">
+  <h1 class="text-2xl text-center font-bold mb-6 text-white">Novo comentário</h1>
+  <%= render "form", comment: @comment %>
 
-<%= render "form", comment: @comment %>
-
-<br>
-
-<div>
-  <%= link_to "Back to comments", comments_path %>
+  <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+    <%= link_to "Voltar aos comentários", comments_path, class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow transition-colors duration-200 text-center" %>
+  </div>
 </div>

@@ -1,11 +1,10 @@
 <% content_for :title, "New post" %>
 
-<h1>New post</h1>
+<div class="bg-gray-100 dark:bg-gray-900 rounded-xl p-6">
+  <h1 class="text-2xl text-center font-bold mb-6 text-white">Novo post</h1>
+  <%= render "form", post: @post %>
 
-<%= render "form", post: @post %>
-
-<br>
-
-<div>
-  <%= link_to "Back to posts", posts_path %>
+  <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+    <%= link_to "Voltar aos posts", posts_path, class: "px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 text-sm dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600" %>
+  </div>
 </div>
